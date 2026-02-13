@@ -1,179 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Valentine For Drishuuuu ❤️</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Drishuuuu ❤️</title>
 
 <style>
 body{
-    text-align:center;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ff758c, #ff7eb3);
-    overflow:hidden;
-    margin:0;
+  margin:0;
+  font-family: Arial, sans-serif;
+  text-align:center;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow:hidden;
 }
 
-h1{
-    margin-top:80px;
-    font-size:28px;
-    color:white;
-    min-height:80px;
+.page{
+  display:none;
+  height:100vh;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.active{
+  display:flex;
 }
 
 button{
-    padding:12px 25px;
-    font-size:18px;
-    border:none;
-    border-radius:25px;
-    margin:10px;
-    cursor:pointer;
-    transition:0.3s;
+  padding:15px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  margin:10px;
 }
 
 #yesBtn{
-    background:#28a745;
-    color:white;
+  background:#ff4d6d;
+  color:white;
+  transition: transform .2s;
+}
+
+#yesBtn:hover{
+  transform:scale(1.2);
 }
 
 #noBtn{
-    background:#dc3545;
-    color:white;
-    position:absolute;
+  background:#555;
+  color:white;
+  position:relative;
 }
 
-.loveAnimation{
-    font-size:30px;
-    color:white;
-    margin-top:30px;
-    animation: glow 1s infinite alternate;
+#loveText{
+  font-size:28px;
+  color:#fff;
+  min-height:40px;
 }
 
-@keyframes glow{
-    from{ text-shadow:0 0 10px white; }
-    to{ text-shadow:0 0 25px red; }
-}
-
-.heart{
-    position:absolute;
-    color:red;
-    font-size:20px;
-    animation:float 5s linear infinite;
-}
-
-@keyframes float{
-    0%{transform:translateY(100vh);}
-    100%{transform:translateY(-10vh);}
+.instaBtn{
+  background:#E1306C;
+  color:white;
 }
 </style>
 </head>
 
 <body>
 
-<audio id="bgMusic" loop>
-  <source src="love.mp3" type="audio/mp3">
+<!-- 🎵 Background Music -->
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
 
-<div id="page1">
-<h1 id="typing"></h1>
-
-<button id="yesBtn" onclick="sayYes()">YES 💖</button>
-<button id="noBtn" onclick="moveNo()">NO 😜</button>
+<!-- 💘 PAGE 1 -->
+<div id="page1" class="page active">
+  <h1>Drishuuuu ❤️</h1>
+  <h2>Will you be my Valentine?</h2>
+  <div>
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 😜</button>
+  </div>
 </div>
 
-<div id="page2" style="display:none; padding:40px;">
-<h1 style="margin-top:120px;">
-You just made me the happiest person alive 🥰💖<br><br>
-Drishuuuu, from today and always,<br>
-I promise to make you smile every day ❤️<br><br>
-– Yours forever, Anurag 💖
-</h1>
+<!-- 💌 PAGE 2 -->
+<div id="page2" class="page">
+  <h1 id="loveText"></h1>
 
-<div class="loveAnimation">
-I love you so much meri mussiii ❤️
+  <button class="instaBtn"
+    onclick="window.open('https://instagram.com/_anurag__mishraa_','_blank')">
+    Send me a message on Instagram 💌
+  </button>
 </div>
-
-<br><br>
-
-<button onclick="openWhatsApp()">Send me a message 💬</button>
-
-<p style="color:white; margin-top:10px;">
-If WhatsApp didn’t open automatically, tap the button ❤️
-</p>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const loveText = document.getElementById("loveText");
 
-// Typing animation
-let text = "Drishuuuu ❤️\n\nWill you be my Valentine? 💕\n\n– Anurag 💖";
-let i = 0;
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
-    i++;
-    setTimeout(typeWriter, 50);
-  }
-}
-window.onload = function() {
-  typeWriter();
+yesBtn.onclick = () => {
+  page1.classList.remove("active");
+  page2.classList.add("active");
+  typeText("I love you so much meri mussiii ❤️");
 };
 
-let yesSize = 1;
+noBtn.onmouseover = () => {
+  noBtn.style.position="absolute";
+  noBtn.style.top=Math.random()*80+"vh";
+  noBtn.style.left=Math.random()*80+"vw";
+};
 
-function moveNo(){
-    let noBtn = document.getElementById("noBtn");
-    noBtn.style.top = Math.random()*400 + "px";
-    noBtn.style.left = Math.random()*300 + "px";
-
-    yesSize += 0.2;
-    document.getElementById("yesBtn").style.transform = "scale(" + yesSize + ")";
+function typeText(text){
+  let i=0;
+  let speed=70;
+  function typing(){
+    if(i<text.length){
+      loveText.innerHTML+=text.charAt(i);
+      i++;
+      setTimeout(typing,speed);
+    }
+  }
+  typing();
 }
-
-function sayYes(){
-
-    document.getElementById("bgMusic").play();
-
-    confetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.6 }
-    });
-
-    setTimeout(() => {
-        confetti({
-            particleCount: 300,
-            spread: 180,
-            origin: { y: 0.5 }
-        });
-    }, 800);
-
-    setTimeout(() => {
-        document.getElementById("page1").style.display="none";
-        document.getElementById("page2").style.display="block";
-    }, 1500);
-
-    // Auto open WhatsApp
-    setTimeout(() => {
-        openWhatsApp();
-    }, 3000);
-}
-
-function openWhatsApp(){
-    window.open("https://api.whatsapp.com/send?phone=916307362031&text=Yes%20Anurag%20❤️%20I%20am%20your%20Valentine%20💖","_blank");
-}
-
-// Floating hearts
-setInterval(()=>{
-    let heart=document.createElement("div");
-    heart.className="heart";
-    heart.innerHTML="❤️";
-    heart.style.left=Math.random()*100+"vw";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),5000);
-},500);
-
 </script>
 
 </body>
