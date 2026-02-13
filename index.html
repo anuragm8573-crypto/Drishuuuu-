@@ -1,139 +1,166 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For Drishuuuuuu 💖</title>
-    <style>
-        body {
-            margin: 0;
-            text-align: center;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-        }
+<title>Valentine For Drishuuuu ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        h1 {
-            margin-top: 120px;
-            font-size: 38px;
-            color: white;
-        }
+<style>
+body{
+    text-align:center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff758c, #ff7eb3);
+    overflow:hidden;
+    margin:0;
+}
 
-        button {
-            padding: 15px 30px;
-            font-size: 20px;
-            margin: 20px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+h1{
+    margin-top:80px;
+    font-size:28px;
+    color:white;
+    min-height:80px;
+}
 
-        #yesBtn {
-            background-color: #ff1744;
-            color: white;
-        }
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    margin:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-        #noBtn {
-            background-color: white;
-            color: #ff1744;
-            position: absolute;
-        }
+#yesBtn{
+    background:#28a745;
+    color:white;
+}
 
-        .heart {
-            position: fixed;
-            bottom: -10px;
-            font-size: 24px;
-            animation: float 5s linear infinite;
-        }
+#noBtn{
+    background:#dc3545;
+    color:white;
+    position:absolute;
+}
 
-        @keyframes float {
-            0% {transform: translateY(0);}
-            100% {transform: translateY(-100vh);}
-        }
-    </style>
+.loveAnimation{
+    font-size:30px;
+    color:white;
+    margin-top:30px;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px white; }
+    to{ text-shadow:0 0 25px red; }
+}
+
+.heart{
+    position:absolute;
+    color:red;
+    font-size:20px;
+    animation:float 5s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+</style>
 </head>
+
 <body>
 
-<h1>
-Drishuuuuuu 💖<br><br>
-Will you be my Valentine?<br><br>
-— From Anurag 💘
+<audio id="bgMusic" loop>
+  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" type="audio/wav">
+</audio>
+
+<div id="page1">
+<h1 id="typing"></h1>
+
+<button id="yesBtn" onclick="sayYes()">YES 💖</button>
+<button id="noBtn" onclick="moveNo()">NO 😜</button>
+</div>
+
+<div id="page2" style="display:none; padding:40px;">
+<h1 style="margin-top:120px;">
+You just made me the happiest person alive 🥰💖<br><br>
+Drishuuuu, from today and always,<br>
+I promise to make you smile every day ❤️<br><br>
+– Yours forever, Anurag 💖
 </h1>
 
-<button id="yesBtn" onclick="sendYes()">YES 💕</button>
-<button id="noBtn" onmouseover="moveNo()">NO 😜</button>
+<div class="loveAnimation">
+I love you so much meri mussiii ❤️
+</div>
 
-<audio autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-</audio>
+<br><br>
+<button onclick="whatsapp()">Send me a message 💬</button>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
-    let yesSize = 20;
 
-    function moveNo() {
-        let noButton = document.getElementById("noBtn");
-        let yesButton = document.getElementById("yesBtn");
+// Typing animation
+let text = "Drishuuuu ❤️\n\nWill you be my Valentine? 💕\n\n– Anurag 💖";
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 50);
+  }
+}
+typeWriter();
 
-        noButton.style.top = Math.random() * window.innerHeight + "px";
-        noButton.style.left = Math.random() * window.innerWidth + "px";
+let yesSize = 1;
 
-        yesSize += 8;
-        yesButton.style.fontSize = yesSize + "px";
-        yesButton.style.padding = (yesSize / 2) + "px " + yesSize + "px";
-    }
+function moveNo(){
+    let noBtn = document.getElementById("noBtn");
+    noBtn.style.top = Math.random()*400 + "px";
+    noBtn.style.left = Math.random()*300 + "px";
 
-    function sendYes() {
+    yesSize += 0.2;
+    document.getElementById("yesBtn").style.transform = "scale(" + yesSize + ")";
+}
 
-        // Big Confetti
+function sayYes(){
+
+    document.getElementById("bgMusic").play();
+
+    confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 }
+    });
+
+    setTimeout(() => {
         confetti({
             particleCount: 300,
-            spread: 120,
-            origin: { y: 0.6 }
+            spread: 180,
+            origin: { y: 0.5 }
         });
+    }, 800);
 
-        // Fireworks effect
-        let duration = 3000;
-        let end = Date.now() + duration;
+    setTimeout(() => {
+        document.getElementById("page1").style.display="none";
+        document.getElementById("page2").style.display="block";
+    }, 2000);
+}
 
-        (function frame() {
-            confetti({
-                particleCount: 5,
-                angle: 60,
-                spread: 60,
-                origin: { x: 0 }
-            });
-            confetti({
-                particleCount: 5,
-                angle: 120,
-                spread: 60,
-                origin: { x: 1 }
-            });
+function whatsapp(){
+    window.location.href="https://wa.me/916307362031?text=Yes Anurag ❤️ I am your Valentine 💖";
+}
 
-            if (Date.now() < end) {
-                requestAnimationFrame(frame);
-            }
-        }());
+// Floating hearts
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+},500);
 
-        // Redirect to YOUR WhatsApp
-        setTimeout(function() {
-            window.location.href = "https://wa.me/916307362031?text=I%20said%20YES%20Anurag%20💖";
-        }, 2000);
-    }
-
-    function createHeart() {
-        let heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * window.innerWidth + "px";
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
-    }
-
-    setInterval(createHeart, 300);
 </script>
 
 </body>
