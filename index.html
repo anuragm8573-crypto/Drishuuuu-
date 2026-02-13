@@ -69,10 +69,20 @@ Will you be my Valentine?<br><br>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
+    let yesSize = 20;
+
     function moveNo() {
-        let button = document.getElementById("noBtn");
-        button.style.top = Math.random() * window.innerHeight + "px";
-        button.style.left = Math.random() * window.innerWidth + "px";
+        let noButton = document.getElementById("noBtn");
+        let yesButton = document.getElementById("yesBtn");
+
+        // Move NO button randomly
+        noButton.style.top = Math.random() * window.innerHeight + "px";
+        noButton.style.left = Math.random() * window.innerWidth + "px";
+
+        // Increase YES button size
+        yesSize += 8;
+        yesButton.style.fontSize = yesSize + "px";
+        yesButton.style.padding = (yesSize / 2) + "px " + yesSize + "px";
     }
 
     function celebrate() {
@@ -91,15 +101,15 @@ Will you be my Valentine?<br><br>
 
         (function frame() {
             confetti({
-                particleCount: 5,
+                particleCount: 6,
                 angle: 60,
-                spread: 55,
+                spread: 60,
                 origin: { x: 0 }
             });
             confetti({
-                particleCount: 5,
+                particleCount: 6,
                 angle: 120,
-                spread: 55,
+                spread: 60,
                 origin: { x: 1 }
             });
 
