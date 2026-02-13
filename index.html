@@ -110,7 +110,9 @@ function typeWriter() {
     setTimeout(typeWriter, 50);
   }
 }
-typeWriter();
+window.onload = function() {
+  typeWriter();  // Ensure typing starts after page loads
+};
 
 let yesSize = 1;
 
@@ -124,7 +126,6 @@ function moveNo(){
 }
 
 function sayYes(){
-
     document.getElementById("bgMusic").play();
 
     confetti({
