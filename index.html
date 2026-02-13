@@ -1,78 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Drishuuuu ❤️ Be My Valentine</title>
+    <title>For Drishuuuuuu 💖</title>
     <style>
         body {
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
-            font-family: Arial, sans-serif;
+            margin: 0;
             text-align: center;
-            padding-top: 80px;
-            color: white;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
             overflow: hidden;
         }
-        h1 { font-size: 45px; }
-        p { font-size: 22px; }
+
+        h1 {
+            margin-top: 120px;
+            font-size: 38px;
+            color: white;
+        }
+
         button {
-            background-color: white;
-            color: #ff4b8b;
-            border: none;
             padding: 15px 30px;
-            font-size: 18px;
+            font-size: 20px;
+            margin: 20px;
+            border: none;
             border-radius: 30px;
             cursor: pointer;
-            margin: 15px;
-            position: relative;
+            transition: 0.3s;
         }
-        button:hover { background-color: #ffe6f0; }
-        .heart {
+
+        #yesBtn {
+            background-color: #ff1744;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: white;
+            color: #ff1744;
             position: absolute;
-            font-size: 20px;
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            font-size: 24px;
             animation: float 5s linear infinite;
         }
+
         @keyframes float {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-800px); opacity: 0; }
+            0% {transform: translateY(0);}
+            100% {transform: translateY(-100vh);}
         }
     </style>
 </head>
 <body>
 
-    <h1>Drishuuuu 💖</h1>
-    <p>You make my world brighter every single day ✨</p>
-    <h2>Will You Be My Valentine? 💕</h2>
+<h1>
+Drishuuuuuu 💖<br><br>
+Will you be my Valentine?<br><br>
+— From Anurag 💘
+</h1>
 
-    <button onclick="yesClicked()">Yes 😍</button>
-    <button id="noBtn" onmouseover="moveButton()">No 😢</button>
+<button id="yesBtn" onclick="celebrate()">YES 💕</button>
+<button id="noBtn" onmouseover="moveNo()">NO 😜</button>
 
-    <script>
-        function yesClicked() {
-            document.body.innerHTML = `
-                <h1>YAYYYY DRISHUUUU 💖</h1>
-                <p>You just made me the happiest person alive 😍</p>
-                <h3>Forever yours,<br>Anurag 💕</h3>
-            `;
-        }
+<audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
 
-        function moveButton() {
-            var button = document.getElementById("noBtn");
-            var x = Math.random() * (window.innerWidth - 100);
-            var y = Math.random() * (window.innerHeight - 50);
-            button.style.position = "absolute";
-            button.style.left = x + "px";
-            button.style.top = y + "px";
-        }
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-        setInterval(function() {
-            var heart = document.createElement("div");
-            heart.className = "heart";
-            heart.innerHTML = "💖";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.top = "100vh";
-            document.body.appendChild(heart);
-            setTimeout(function() { heart.remove(); }, 5000);
-        }, 300);
-    </script>
+<script>
+    function moveNo() {
+        let button = document.getElementById("noBtn");
+        button.style.top = Math.random() * window.innerHeight + "px";
+        button.style.left = Math.random() * window.innerWidth + "px";
+    }
+
+    function celebrate() {
+        alert("SHE SAID YESSSSS 😭💖");
+
+        // Big Confetti Blast
+        confetti({
+            particleCount: 300,
+            spread: 120,
+            origin: { y: 0.6 }
+        });
+
+        // Fireworks mode
+        let duration = 5 * 1000;
+        let end = Date.now() + duration;
+
+        (function frame() {
+            confetti({
+                particleCount: 5,
+                angle: 60,
+                spread: 55,
+                origin: { x: 0 }
+            });
+            confetti({
+                particleCount: 5,
+                angle: 120,
+                spread: 55,
+                origin: { x: 1 }
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
+    }
+
+    function createHeart() {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+</script>
 
 </body>
 </html>
