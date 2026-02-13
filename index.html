@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drishuuuu ❤️ Be My Valentine</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+            color: white;
+            overflow: hidden;
+        }
+        h1 { font-size: 45px; }
+        p { font-size: 22px; }
+        button {
+            background-color: white;
+            color: #ff4b8b;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 15px;
+            position: relative;
+        }
+        button:hover { background-color: #ffe6f0; }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-800px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
 
+    <h1>Drishuuuu 💖</h1>
+    <p>You make my world brighter every single day ✨</p>
+    <h2>Will You Be My Valentine? 💕</h2>
+
+    <button onclick="yesClicked()">Yes 😍</button>
+    <button id="noBtn" onmouseover="moveButton()">No 😢</button>
+
+    <script>
+        function yesClicked() {
+            document.body.innerHTML = `
+                <h1>YAYYYY DRISHUUUU 💖</h1>
+                <p>You just made me the happiest person alive 😍</p>
+                <h3>Forever yours,<br>Anurag 💕</h3>
+            `;
+        }
+
+        function moveButton() {
+            var button = document.getElementById("noBtn");
+            var x = Math.random() * (window.innerWidth - 100);
+            var y = Math.random() * (window.innerHeight - 50);
+            button.style.position = "absolute";
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+        }
+
+        setInterval(function() {
+            var heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "💖";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            document.body.appendChild(heart);
+            setTimeout(function() { heart.remove(); }, 5000);
+        }, 300);
+    </script>
+
+</body>
+</html>
