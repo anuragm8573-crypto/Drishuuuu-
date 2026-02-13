@@ -70,7 +70,7 @@ button{
 <body>
 
 <audio id="bgMusic" loop>
-  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav" type="audio/wav">
+  <source src="love.mp3" type="audio/mp3">
 </audio>
 
 <div id="page1">
@@ -93,7 +93,13 @@ I love you so much meri mussiii ❤️
 </div>
 
 <br><br>
-<button onclick="whatsapp()">Send me a message 💬</button>
+
+<button onclick="openWhatsApp()">Send me a message 💬</button>
+
+<p style="color:white; margin-top:10px;">
+If WhatsApp didn’t open automatically, tap the button ❤️
+</p>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -111,7 +117,7 @@ function typeWriter() {
   }
 }
 window.onload = function() {
-  typeWriter();  // Ensure typing starts after page loads
+  typeWriter();
 };
 
 let yesSize = 1;
@@ -126,6 +132,7 @@ function moveNo(){
 }
 
 function sayYes(){
+
     document.getElementById("bgMusic").play();
 
     confetti({
@@ -145,11 +152,16 @@ function sayYes(){
     setTimeout(() => {
         document.getElementById("page1").style.display="none";
         document.getElementById("page2").style.display="block";
-    }, 2000);
+    }, 1500);
+
+    // Auto open WhatsApp
+    setTimeout(() => {
+        openWhatsApp();
+    }, 3000);
 }
 
-function whatsapp(){
-    window.location.href="https://wa.me/916307362031?text=Yes Anurag ❤️ I am your Valentine 💖";
+function openWhatsApp(){
+    window.open("https://api.whatsapp.com/send?phone=916307362031&text=Yes%20Anurag%20❤️%20I%20am%20your%20Valentine%20💖","_blank");
 }
 
 // Floating hearts
